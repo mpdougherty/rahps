@@ -7,14 +7,14 @@
 download_forecast(gage_id, path)
 }
 \arguments{
-\item{gage_id}{character; The 5-digit river gage identifer. The list
+\item{gage_id}{character; The 5-digit river gage identifier. The list
 can be found at https://water.weather.gov/ahps/.}
 
 \item{path}{character; The path to the folder where the `.xml` file
 will be written to.}
 }
 \value{
-Path the downloaded gage forcast .xml file.
+character; The path to the downloaded gage forecast xml file.
 }
 \description{
 Download the `.xml` file for the specified gage from the NWS

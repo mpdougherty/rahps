@@ -4,12 +4,12 @@
 #' AHPS web service.
 #'
 #' @export
-#' @param gage_id      character; The 5-digit river gage identifer. The list
+#' @param gage_id      character; The 5-digit river gage identifier. The list
 #'                     can be found at https://water.weather.gov/ahps/.
 #' @param path         character; The path to the folder where the `.xml` file
 #'                     will be written to.
 #'
-#' @return Path the downloaded gage forcast .xml file.
+#' @return character; The path to the downloaded gage forecast xml file.
 #'
 download_forecast <- function(gage_id, path) {
   # Current nws ahps hydrograph_to_html url
