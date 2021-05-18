@@ -20,3 +20,11 @@ data frame; A data frame containing gage site information for the
 Extract the gage forecast information from the input gage xml
   file and write it into a data frame.
 }
+\examples{
+gage_id <- "canm7"
+gage_file <- file.path(system.file("extdata", "canm7.xml",
+                                   package = "rahps"))
+
+gage_forecast_df <- get_gage_forecast(gage_id, gage_file)
+
+}

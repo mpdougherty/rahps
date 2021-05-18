@@ -20,3 +20,21 @@ character; The path to the downloaded gage forecast xml file.
 Download the `.xml` file for the specified gage from the NWS
 AHPS web service.
 }
+\details{
+This function uses the National Weather Service (NWS) Advanced
+Hydrologic Prediction Service (AHPS) `hydrograph_to_xml` web service to
+download gage forcasts, using a URL such as:
+`https://water.weather.gov/ahps2/hydrograph_to_xml.php?gage=blvi4&output=xml`
+}
+\examples{
+\donttest{
+gage_id <- "canm7"
+path <- Sys.getenv("HOME")
+
+gage_file <- rahps::download_forecast(gage_id, path)
+
+# View the xml file
+htmltidy::xml_view(xml2::read_xml(gage_file))
+}
+
+}

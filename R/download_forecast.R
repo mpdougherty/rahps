@@ -9,6 +9,11 @@
 #' @param path         character; The path to the folder where the `.xml` file
 #'                     will be written to.
 #'
+#' @details This function uses the National Weather Service (NWS) Advanced
+#' Hydrologic Prediction Service (AHPS) `hydrograph_to_xml` web service to
+#' download gage forcasts, using a URL such as:
+#' `https://water.weather.gov/ahps2/hydrograph_to_xml.php?gage=blvi4&output=xml`
+#'
 #' @return character; The path to the downloaded gage forecast xml file.
 #'
 #' @examples
