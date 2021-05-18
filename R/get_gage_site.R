@@ -11,6 +11,13 @@
 #' @return data frame; A data frame containing gage site information for the
 #'   input gage forecast xml file.
 #'
+#' @examples
+#' gage_id <- "canm7"
+#' gage_file <- file.path(system.file("extdata", "canm7.xml",
+#'                                    package = "rahps"))
+#'
+#' gage_site_df <- get_gage_site(gage_id, gage_file)
+#'
 #' @importFrom XML xmlParse xmlAttrs xmlRoot xmlToDataFrame getNodeSet
 #' @importFrom xml2 read_xml xml_attr xml_find_all
 #' @importFrom dplyr rename_with bind_cols

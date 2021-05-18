@@ -11,6 +11,20 @@
 #'
 #' @return character; The path to the downloaded gage forecast xml file.
 #'
+#' @examples
+#' \donttest{
+#' gage_id <- "canm7"
+#' path <- Sys.getenv("HOME")
+#'
+#' gage_file <- rahps::download_forecast(gage_id, path)
+#'
+#' # View the xml file
+#' htmltidy::xml_view(xml2::read_xml(gage_file))
+#' }
+#'
+#' @importFrom utils download.file
+#' @importFrom htmltidy xml_view
+#'
 download_forecast <- function(gage_id, path) {
   # Current nws ahps hydrograph_to_html url
   ahps_url <- "https://water.weather.gov/ahps2/hydrograph_to_xml.php"
@@ -22,7 +36,7 @@ download_forecast <- function(gage_id, path) {
   gage_file <- file.path(path, paste0(gage_id, ".xml"))
 
   # Download the file
-  download.file(gage_url, gage_file)
+  utils::download.file(gage_url, gage_file)
 
   return(gage_file)
 }

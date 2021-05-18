@@ -11,10 +11,18 @@
 #' @return data frame; A data frame containing gage site information for the
 #'   input gage forecast xml file.
 #'
+#' @examples
+#' gage_id <- "canm7"
+#' gage_file <- file.path(system.file("extdata", "canm7.xml",
+#'                                    package = "rahps"))
+#'
+#' gage_forecast_df <- get_gage_forecast(gage_id, gage_file)
+#'
 #' @importFrom XML xmlParse xmlToDataFrame getNodeSet
 #' @importFrom xml2 read_xml xml_attr xml_find_all
 #' @importFrom lubridate as_datetime
 #' @importFrom dplyr select
+#' @importFrom rlang .data
 #'
 get_gage_forecast <- function(gage_id, gage_file) {
   # Get the gage_site data frame
@@ -63,6 +71,9 @@ get_gage_forecast <- function(gage_id, gage_file) {
   forecast$secondary_units <- xml2::xml_attr(xml2::xml_find_all(gage_xml2,
                                                 "//forecast//datum/secondary"),
                                              "units")
-  forecast <- dplyr::select(forecast, -c(valid, primary, secondary, pedts))
+  forecast <- dplyr::select(forecast, -c(.data$valid,
+                                         .data$primary,
+                                         .data$secondary,
+                                         .data$pedts))
   return(forecast)
 }
