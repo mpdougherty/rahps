@@ -2,7 +2,6 @@ library(rahps)
 library(XML)
 library(xml2)
 library(dplyr)
-library(htmltidy)
 
 gage_id <- "canm7"
 gage_file <- file.path(system.file("extdata", "canm7.xml",
