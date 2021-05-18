@@ -13,7 +13,7 @@ forcasts.
 and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![packageversion](https://img.shields.io/badge/Package%20version-0.1.1-orange.svg?style=flat-square)](commits/master)
-[![Last-changedate](https://img.shields.io/badge/last%20change-2021--05--17-yellowgreen.svg)](/commits/master)
+[![Last-changedate](https://img.shields.io/badge/last%20change-2021--05--18-yellowgreen.svg)](/commits/master)
 [![Licence](https://img.shields.io/badge/licence-CC0-blue.svg)](http://choosealicense.com/licenses/cc0-1.0/)
 
 ## Latest Updates
@@ -36,3 +36,34 @@ To install the `fluvgeo` package, install from GitHub using the
 
 If you find any bugs using `rahps`, please open an
 [issue](https://github.com/mpdougherty/rahps/issues).
+
+## Getting Started
+
+Often users want to know the river forecast for a specific gage or set
+of gages. The National Weather Service (NWS) Advanced Hydrologic
+Prediction Service (AHPS) provides a website to view these results
+<https://water.weather.gov/ahps/>. Each dot on the map refers to a
+single gage. When you mouse-over any point, it displays the 5-digit gage
+identifier in the popup. This gage unique identifier can be used to
+request a river gage forecast from thir web service.
+
+In `rahps`, use the `download_forecast` function to retrieve the `.xml`
+file containing the current forecast for a gage.
+
+    gage_id <- "canm7"
+    path <- Sys.getenv("HOME")
+
+    gage_file <- rahps::download_forecast(gage_id, path)
+
+Use the `htmltidy::xml_view` function to view the `.xml` file.
+
+    library(xml2)
+    library(htmltidy)
+
+    # View the xml file
+    htmltidy::xml_view(xml2::read_xml(gage_file))
+
+Use the `gage_forecast` to extract the information from the `.xml` file
+into a data frame.
+
+    gage_forecast_df <- get_gage_forecast(gage_id, gage_file)
